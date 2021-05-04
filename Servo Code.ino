@@ -27,10 +27,4 @@ void loop() {
     TURN.write(angle);
     delay(15);
   }
-  // And back from 180 to 0 degrees:
-  for (angle = 180; angle >= 0; angle -= 1) {
-    TURN.write(angle);
-    delay(30);
-  }
-  delay(1000);
 }
