@@ -1,30 +1,41 @@
+#include <Servo.h>  //tells the computer that im using a servo
+#define ACTIVATED LOW  // tells the computer that the button is pressed down when the power is low voltage
+Servo servo1; //setting the name for the the servo
+int servoPin = 9; //defining what pin the servo is plugged into on the arduino UNO
+const int buttonPin = 2;  //defining what pin the button is plugged into 
+int buttonState = 0; //saying that the button is set to 0 normally
+void setup(){
 
-// Include the servo library:
-#include <Servo.h>
-// Include the button library:
-
-// Create a new servo object:
-Servo TURN;
-// Define the servo pin:
-// AKA Where you plugged the servo into on your UNO
-#define servoPin 9
-// Create a variable to store the current servo position:
-int angle = 0;
-void setup() {
-  // Attach the Servo variable to a pin:
-  TURN.attach(servoPin);
+  pinMode(buttonPin, INPUT);
+  digitalWrite(buttonPin,HIGH);
+  servo1.attach(servoPin);
 }
-void loop() {
-  // Tell the servo to go to a particular angle:
-  TURN.write(90);
+/*
+void loop(){
+  servo1.write(0);
   delay(1000);
-  TURN.write(90);
+  servo1.write(90);
+  delay(1500);
+  servo1.write(180);
   delay(1000);
-  TURN.write(0);
+
+}
+*/
+void loop(){
+buttonState = digitalRead(buttonPin);
+  if(buttonState == ACTIVATED){
+   
+      servo1.write(0);
+  delay(1000);   
+  servo1.write(90);
+  delay(1500);
+  servo1.write(180);  
   delay(1000);
-  // Sweep from 0 to 90 to 90 degrees:
-  for (angle = 0; angle <= 180; angle += 1) {
-    TURN.write(angle);
-    delay(15);
+   }
+   
+  else {
+    
   }
-}
+     }
+        // the thing above is telling the computer to keep checking over and over again to see if the button is pressed, if it is then itll run the code (in this case making the servo despense food)
+
